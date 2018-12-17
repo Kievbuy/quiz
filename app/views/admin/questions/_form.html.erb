@@ -1,0 +1,46 @@
+<%= simple_form_for([:admin, @question], html: { class: 'form' }) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-block">
+
+    <div class="form-inputs">
+      <%= f.input :body %>
+      <%= f.input :active %>
+      <p>Quizzes:</p>
+      <%= f.collection_check_boxes(:quiz_ids, Quiz.all, :id, :title) %>
+    </div>
+
+  </div>
+
+
+  <hr>
+    <h3>Options</h3>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <div id="options">
+          <%= f.simple_fields_for :options, update_only: true do |option| %>
+            <%= render 'option_fields', f: option %>
+          <% end %>
+        </div>
+      </tbody>
+    </table>
+    <div class="links">
+      <%= link_to_add_association 'add option', f, :options, class: 'btn btn-success' %>
+    </div>
+    <hr>
+
+
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn btn-lg btn-warning' %>
+  </div>
+  <br>
+<% end %>

@@ -1,0 +1,60 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+
+.logo {
+  max-height: 20px;
+}
+
+.devise {
+  background: url(bg_devise.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
+
+.form-container {
+  max-width: 400px;
+  margin: 50px auto 0 auto;
+  padding: 20px 30px;
+  background-color: rgba(255,255,255,0.7);
+  border: 4px solid yellow;
+  border-radius: 5px;
+}
+
+.form-block {
+  max-width: 450px;
+}
+
+.success-icon {
+  font-size: 1.2em;
+  color: green;
+  font-weight: bold;
+}
+
+.bordered {
+  border: 2px solid grey;
+  border-radius: 5px;
+  padding: 10px 2px;
+  margin: 10px 0 15px 0;
+}
+
+.red {
+  color: red;
+  font-weight: bold;
+}
+
+.yellow {
+  color: orange;
+  font-weight: bold;
+}
+
+.green {
+  color: green;
+  font-weight: bold;
+}
+
+.not-link {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  line-height: 20px;
+  font-weight: bold;
+}

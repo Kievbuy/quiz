@@ -1,0 +1,32 @@
+
+<%= simple_form_for([:admin, @instruction], html: { class: 'form' }) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-block">
+
+    <div class="form-inputs">
+      <div class="form-group">
+        <%= f.input :title %>
+      </div>
+
+      <div class="form-group">
+        <%= f.input :body %>
+      </div>
+
+      <div class="form-group">
+        <%= f.input :active %>
+      </div>
+
+      <div class="form-group">
+        <%= f.input :category_id, collection: @categories, label_method: :title, value_method: :id, label: "Category", include_blank: false %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, class: 'btn btn-warning' %>
+    </div>
+
+  </div>
+
+<% end %>

@@ -1,0 +1,7 @@
+<h1>Editing Admin Quiz</h1>
+
+<%= render 'form', quiz: @quiz %>
+
+<br>
+<%= link_to 'Show', admin_quiz_path(@quiz), class: 'btn btn-warning' %> |
+<%= link_to 'Back', admin_quizzes_path, class: 'btn btn-default' %>

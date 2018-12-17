@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Instructions</h1>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <td width="50">#</td>
+      <td>Title</td>
+      <td>Body</td>
+      <td>Category</td>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @instructions.each_with_index do |instruction,i| %>
+      <tr>
+        <td><%= (i + 1).to_s %></td>
+        <td><%= instruction.title %></td>
+        <td><%= instruction.body %></td>
+        <td><%= Category.find(instruction.category_id).title %></td>
+        <td width="30"><%= link_to 'Show', admin_instruction_path(instruction) %></td>
+        <td width="30"><%= link_to 'Edit', edit_admin_instruction_path(instruction) %></td>
+        <td width="30"><%= link_to 'Destroy', admin_instruction_path(instruction), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Instruction', new_admin_instruction_path, class: 'btn btn-ld btn-warning' %>

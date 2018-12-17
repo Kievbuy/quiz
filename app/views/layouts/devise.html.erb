@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Quiz</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class='devise'>
+
+    <div class="form-container">
+      <div class="text-center">
+        <%= image_tag 'logo.png' %>
+      </div>
+
+      <%= yield %>
+    </div>
+
+  </body>
+</html>

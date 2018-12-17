@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @category.title %></h1>
+
+<p class="h3"><%= @category.description %></p>
+
+<br>
+<%= link_to 'Edit', edit_admin_category_path(@category), class: 'btn btn-warning' %> |
+<%= link_to 'Back', admin_categories_path, class: 'btn btn-default' %>

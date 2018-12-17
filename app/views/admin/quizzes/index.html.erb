@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Quizzes</h1>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th width="30">#</th>
+      <th>Title</th>
+      <th>Level</th>
+      <th>Number of answers to pass the test</th>
+      <th>Percentage of answers to pass the test</th>
+      <th>Instructions</th>
+      <th>Active</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @quizzes.each_with_index do |quiz,i| %>
+      <tr>
+        <td><%= i + 1 %></td>
+        <td><%= quiz.title %></td>
+        <td><%= quiz.level %></td>
+        <td><%= quiz.answers_to_pass %></td>
+        <td><%= quiz.percent_to_pass %></td>
+        <td>
+          <% quiz.instructions.pluck(:title).each do |instruction| %>
+            <%= "#{instruction}\n" %>
+          <% end %>
+        </td>
+        <td>
+          <% if quiz.active %>
+            <span style="color:green;">
+              Active
+            </span>
+          <% else %>
+            <span style="color:grey;">
+              Disabled
+            </span>
+          <% end %>
+        </td>
+        <td width="30"><%= link_to 'Show', admin_quiz_path(quiz) %></td>
+        <td width="30"><%= link_to 'Edit', edit_admin_quiz_path(quiz) %></td>
+        <td width="30"><%= link_to 'Destroy', admin_quiz_path(quiz), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Quiz', new_admin_quiz_path, class: 'btn btn-lg btn-warning' %>
