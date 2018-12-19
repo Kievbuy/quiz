@@ -1,20 +1,30 @@
-
 <%= simple_form_for([:admin, @quiz], html: { class: 'form' }) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-block">
     <div class="form-inputs">
+      <%= hidden_field_tag "key", "dashboard" %>
       <%= f.input :title %>
       <%= f.input :level %>
-      <%= f.input :answers_to_pass %>
       <%= f.input :percent_to_pass %>
+      <%= f.input :pool_size %>
       <%= f.input :active %>
 
-      <div class="bordered">
-        <p class="h4">Instructions:</p>
-        <%= f.collection_check_boxes(:instruction_ids, Instruction.all, :id, :title) %>
-      </div>
+      <% if @instruction %>
+        <p>Instruction: <%= @instruction.title %></p>
+        <%= f.hidden_field :instruction_ids, multiple: true, value: @instruction.id %>
+      <% else %>
+        <div class="bordered">
+          <p class="h4">Instructions:</p>
+          <%= f.collection_check_boxes(:instruction_ids, Instruction.all, :id, :title) do |b| %>
+              <%= b.label class:"label-checkbox" do %>
+              <%= b.check_box + b.text %>
+            <%end%>
+            <br>
+          <%end%>
+        </div>
+       <% end %>
     </div>
 
     <div class="form-actions">

@@ -8,7 +8,11 @@
       <th width="30">#</th>
       <th>Title</th>
       <th>Level</th>
-      <th>Number of answers to pass the test</th>
+      <th>
+        Questions No <br>
+        <small>Mandatory: <%= Question.mandatory.count %></small>
+      </th>
+      <th>Pool size</th>
       <th>Percentage of answers to pass the test</th>
       <th>Instructions</th>
       <th>Active</th>
@@ -22,7 +26,8 @@
         <td><%= i + 1 %></td>
         <td><%= quiz.title %></td>
         <td><%= quiz.level %></td>
-        <td><%= quiz.answers_to_pass %></td>
+        <td><%= quiz.questions.count  %></td>
+        <td><%= quiz.pool_size  %></td>
         <td><%= quiz.percent_to_pass %></td>
         <td>
           <% quiz.instructions.pluck(:title).each do |instruction| %>

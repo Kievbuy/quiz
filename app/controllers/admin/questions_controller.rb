@@ -51,6 +51,6 @@ class Admin::QuestionsController < Admin::BaseController
     end
 
     def question_params
-      params.require(:question).permit(:body, :active, quiz_ids: [], options_attributes: [:id, :body, :correct, :_destroy])
+      params.require(:question).permit(:body, :active, :mandatory, :required, quiz_ids: [], options_attributes: [:id, :body, :correct, :_destroy])
     end
 end

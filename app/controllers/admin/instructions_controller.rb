@@ -24,8 +24,13 @@ class Admin::InstructionsController < Admin::BaseController
   # POST /instructions
   def create
     @instruction = Instruction.new(instruction_params)
+
     if @instruction.save
-      redirect_to admin_instruction_path(@instruction), notice: 'Instruction was successfully created.'
+      if params[:key].present? && params[:key] == "new"
+        redirect_to new_admin_quiz_path(instruction_id: @instruction)
+      else
+        redirect_to admin_instruction_path(@instruction), notice: 'Instruction was successfully created.'
+      end
     else
       render :new
     end
@@ -72,6 +77,14 @@ class Admin::InstructionsController < Admin::BaseController
     end
 
     def instruction_params
-      params.require(:instruction).permit(:instruction_id, :user_id, :title, :body, :category_id)
+      params.require(:instruction).permit(:instruction_id,
+                                          :user_id,
+                                          :title,
+                                          :body,
+                                          :category_id,
+                                          :repeat,
+                                          :control,
+                                          :active,
+                                          :for_employees)
     end
 end

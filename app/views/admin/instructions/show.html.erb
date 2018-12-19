@@ -1,4 +1,15 @@
 <p id="notice"><%= notice %></p>
 
+<h1><%= @instruction.title %></h1>
+
+<p class="h4">Category: <%= @instruction.category.title %></p>
+
+<blockquote>
+  Body:
+  <br>
+  <%= @instruction.body %>
+</blockquote>
+
+<br>
 <%= link_to 'Edit', edit_admin_instruction_path(@instruction), class: 'btn btn-warning' %> |
 <%= link_to 'Back', admin_instructions_path, class: 'btn btn-default' %>

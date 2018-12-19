@@ -18,7 +18,10 @@ Rails.application.routes.draw do
     end
     resources :answers
 
-    root to: 'instructions#index'
+    scope :dashboard, controller: :dashboard do
+      post 'handle_instruction'
+    end
+    root to: 'dashboard#index'
   end
 
   resources :instructions

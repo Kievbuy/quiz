@@ -18,11 +18,7 @@
       <tr>
         <td><%= i + 1 %></td>
         <td><%= question.body %></td>
-        <td>
-          <% question.quizzes.pluck(:title).each do |q| %>
-            <%= "#{q}\n" %>
-          <% end %>
-        </td>
+        <td><%= question.quizzes.count %></td>
         <td>
           <% if question.active %>
             <span style="color:green;">

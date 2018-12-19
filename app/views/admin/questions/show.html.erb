@@ -2,7 +2,9 @@
 
 <h2><%= @question.body %></h2>
 
-<p class="h4">Active: <%= @question.active.to_s %></p>
+<p class="h4">Active: <%= @question.active %></p>
+<p class="h4">Mandatory: <%= @question.mandatory %></p>
+<p class="h4">Required: <%= @question.required %></p>
 
 <table class="table">
   <thead>

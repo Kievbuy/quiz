@@ -7,8 +7,19 @@
     <div class="form-inputs">
       <%= f.input :body %>
       <%= f.input :active %>
-      <p>Quizzes:</p>
-      <%= f.collection_check_boxes(:quiz_ids, Quiz.all, :id, :title) %>
+      <%= f.input :mandatory %>
+      <%= f.input :required %>
+      <div class="bordered" id="quizzes-block">
+        <p>Quizzes:</p>
+        <div class="form-group">
+          <%= f.collection_check_boxes(:quiz_ids, Quiz.all, :id, :title, class: "form-control") do |b| %>
+            <%= b.label class:"label-checkbox" do %>
+            <%= b.check_box + b.text %>
+          <%end%>
+          <br>
+        <% end %>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -44,3 +55,15 @@
   </div>
   <br>
 <% end %>
+
+<script>
+$(document).ready(function(){
+    $('#question_mandatory').change(function(){
+        if(this.checked)
+            $('#quizzes-block').fadeOut('slow');
+        else
+            $('#quizzes-block').fadeIn('slow');
+
+    });
+});
+</script>

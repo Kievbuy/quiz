@@ -1,7 +1,7 @@
-require 'quiz.rb'
 class Admin::QuizzesController < Admin::BaseController
   before_action :set_quiz, only: [:show, :edit, :update, :destroy]
   before_action :set_instructions, only: [:new, :edit]
+  before_action :set_instruction, only: :new
 
   # GET /admin/quizzes
   def index
@@ -26,7 +26,12 @@ class Admin::QuizzesController < Admin::BaseController
     @quiz = Quiz.new(quiz_params)
 
     if @quiz.save
-      redirect_to admin_quiz_path(@quiz), notice: 'Quiz was successfully created.'
+      if params[:key].present? && params[:key] == "dashboard"
+        @instruction = @quiz.instructions.last
+        redirect_to admin_root_path(instruction_id: @instruction.id), flash: { show_modal: true }
+      else
+        redirect_to admin_quiz_path(@quiz), notice: 'Quiz was successfully created.'
+      end
     else
       render :new
     end
@@ -56,7 +61,17 @@ class Admin::QuizzesController < Admin::BaseController
       @instructions = Instruction.active
     end
 
+    def set_instruction
+      @instruction = Instruction.find(params[:instruction_id]) if params[:instruction_id]
+    end
+
     def quiz_params
-      params.require(:quiz).permit(:title, :level, :active, :answers_to_pass, :percent_to_pass, :instruction_ids)
+      params.require(:quiz).permit(:title,
+                                   :level,
+                                   :active,
+                                   :answers_to_pass,
+                                   :percent_to_pass,
+                                   :pool_size,
+                                   instruction_ids: [])
     end
 end

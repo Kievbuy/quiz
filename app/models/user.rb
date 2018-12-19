@@ -1,8 +1,9 @@
 class User < ApplicationRecord
   enum role: [:nutzer, :admin]
 
-  has_and_belongs_to_many :instructions
-  has_many :answers
+  has_many :instructions_users
+  has_many :instructions, through: :instructions_users
+  has_many :examinations
 
   after_initialize :set_default_role, if: :new_record?
 
@@ -10,6 +11,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :recoverable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :rememberable, :validatable
+
+  validates :email, uniqueness: true
 
   scope :nutzer, -> { where(role: "nutzer") }
 
